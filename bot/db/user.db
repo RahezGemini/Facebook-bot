@@ -2,8 +2,8 @@
   "100090298542452": {
     "nama": "Takashi Kenta",
     "userID": "100090298542452",
-    "dollar": 0,
-    "exp": 0,
+    "dollar": 10.5,
+    "exp": 210,
     "ban": "false",
     "level": 1,
     "daily": null

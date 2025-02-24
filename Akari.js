@@ -16,7 +16,7 @@ const now = moment.tz(zonawaktu);
 // const uptime = require('./bot/uptime');
 global.db = {
     userdata: {},
-    threaddata: {}
+    threaddata: {},
 };
 
 process.on('unhandledRejection', error => console.log(logo.error + error));
@@ -252,6 +252,13 @@ login({ appState: JSON.parse(akun, zen) }, setting, (err, api) => {
       process.exit();
     }
 
+      const threadInfo = ThreadData(event.threadID);
+  if (threadInfo.ban === "true") {
+    console.log(ayanokoji('database') + `Thread ${event.threadID} di-ban, bot akan keluar.`);
+    api.removeUserFromGroup(api.getCurrentUserID(), event.threadID);
+    return;
+  }
+
          const userglobal = getData(event.senderID);
          global.db.userData = {
              nama: userglobal.nama,
@@ -261,6 +268,12 @@ login({ appState: JSON.parse(akun, zen) }, setting, (err, api) => {
              level: userglobal.level,
              ban: userglobal.ban,
              daily: userglobal.daily
+         };
+         global.db.getAllUser = {
+             Alluser: getAllUser
+         };
+         global.db.getAllThread = {
+             Alluser: getAllThread
          };
        
     
@@ -320,20 +333,20 @@ if (!body.startsWith(awalan)) {
 
           if (kuldown(event.senderID, hady.nama, hady.kuldown) == 'hadi') {
             if (hady.peran == 0 || !hady.peran) {
-              await Ayanokoji({ api, event, args, bhs, getStream, loadC, setUser, getData, ThreadData });
+              await Ayanokoji({ api, event, args, bhs, getStream, loadC, setUser, getData, ThreadData, setThread, getAllUser, getAllThread });
               return;
             }
             if ((hady.peran == 2 || hady.peran == 1) && admin.includes(event.senderID) || hady.peran == 0) {
-              await Ayanokoji({ api, event, args, bhs, getStream, loadC, setUser, getData, ThreadData });
+              await Ayanokoji({ api, event, args, bhs, getStream, loadC, setUser, getData, ThreadData, setThread, getAllUser, getAllThread });
               return;
             } else if (hady.peran == 1 && adminIDs.includes(event.senderID) || hady.peran == 0) {
-              await Ayanokoji({ api, event, args, bhs, getStream, loadC, setUser, getData, ThreadData });
+              await Ayanokoji({ api, event, args, bhs, getStream, loadC, setUser, getData, ThreadData, setThread, getAllUser, getAllThread });
               return;
             } else {
               api.setMessageReaction("❗", event.messageID);
             }
           } else {
-            api.setMessageReaction('⌛', event.messageID);
+            api.sendMessage('Sedang Couldown mohon tunggu...', event.threadID);
           }
         }
       }
