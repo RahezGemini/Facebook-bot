@@ -2,8 +2,17 @@
   "100090298542452": {
     "nama": "Takashi Kenta",
     "userID": "100090298542452",
-    "dollar": 10.5,
-    "exp": 210,
+    "dollar": 10,
+    "exp": 200,
+    "ban": "false",
+    "level": 1,
+    "daily": null
+  },
+  "61565834699473": {
+    "nama": "Iky Anomali Fesnuk",
+    "userID": "61565834699473",
+    "dollar": 3,
+    "exp": 60,
     "ban": "false",
     "level": 1,
     "daily": null

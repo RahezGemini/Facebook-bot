@@ -236,9 +236,10 @@ login({ appState: JSON.parse(akun, zen) }, setting, (err, api) => {
     
     if (data[userID].exp >= 1000) {
       data[userID].level += 1;
-      data[userID].exp = 0; 
+      data[userID].exp = 0;
+      data[userID].dollar += 200
       console.log(ayanokoji('database') + `${data[userID].nama} telah naik ke level ${data[userID].level}.`);
-      api.sendMessage(`Selamat ${data[userID].nama} telah naik ke level ${data[userID].level}!`, userID); // Kirim pesan ke pengguna
+      api.sendMessage(`Selamat ${data[userID].nama} telah naik ke level ${data[userID].level} dan mendapatkan 200$`, event.threadID); // Kirim pesan ke pengguna
     }
 
     simpan(); 
@@ -269,18 +270,10 @@ login({ appState: JSON.parse(akun, zen) }, setting, (err, api) => {
              ban: userglobal.ban,
              daily: userglobal.daily
          };
-         global.db.getAllUser = {
-             Alluser: getAllUser
-         };
-         global.db.getAllThread = {
-             Alluser: getAllThread
-         };
        
-    
     const body = event.body;
     if (!body || (global.Ayanokoji.maintain === true && !admin.includes(event.senderID)) || (chatdm === false && event.isGroup == false && !admin.includes(event.senderID))) return;
-
-    addData(event.senderID, api);
+    
     const userData = getData(event.senderID);
 
     if (userData && userData.ban === "true") {
@@ -292,8 +285,10 @@ login({ appState: JSON.parse(akun, zen) }, setting, (err, api) => {
 if (userData && userData.ban !== "true") {
     addExpAndDollar(event.senderID);
   }
+
       
-if (!body.startsWith(awalan)) {
+    if (!body.startsWith(awalan)) {
+        addData(event.senderID, api);
     if (body.toLowerCase() === "prefix") {
     return api.sendMessage(`Awalan ${nama} adalah ${awalan}`, event.threadID, event.messageID);
   }
@@ -306,7 +301,6 @@ if (!body.startsWith(awalan)) {
 
       async function hady_cmd(cmd, api, event) {
   const args = body?.replace(`${awalan}${cmd}`, "")?.trim().split(' ');
-
   try {
     const threadInfo = await new Promise((resolve, reject) => {
       api.getThreadInfo(event.threadID, (err, info) => {
@@ -315,6 +309,7 @@ if (!body.startsWith(awalan)) {
       });
     });
 
+    addData(event.senderID, api);
     saveThreadData(event.threadID, threadInfo);
 
     const adminIDs = threadInfo.adminIDs.map(admin => admin.id);
