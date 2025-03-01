@@ -77,7 +77,7 @@ function setOptions(globalOptions, options) {
   });
 }
 
-const configPath = process.cwd() + '/hady-zen/ayanokoji/kiyotaka.json';  
+const configPath = process.cwd() + 'kiyotaka.json';  
 let bypassEnabled = false;
 
 if (!fs.existsSync(configPath)) {
@@ -123,7 +123,7 @@ function BypassAutomationNotification(resp, jar, globalOptions, appstate, ID) {
                     }
                     return utils.post("https://www.facebook.com/api/graphql/", jar, FormBypass, globalOptions)
                     .then(utils.saveCookies(jar)).then(function(res) {
-                        console.log(global.Ayanokoji.logo.error + "Checkpoint terdeteksi, ayanokoji akan berhenti.");
+                        console.log(global.Ayanokoji.logo.error + "Checkpoint terdeteksi, bot akan berhenti.");
                         return process.exit(1);                    
                     });
                 }
@@ -436,7 +436,7 @@ function loginHelper(appState, email, password, globalOptions, callback, prCallb
             }
   mainPromise
     .then(function () {
-      console.log(global.Ayanokoji.logo.login + 'Ayanokoji berhasil masuk ke akun.');
+      console.log(global.Ayanokoji.logo.login + 'bot berhasil masuk ke akun.');
       return callback(null, api);
     })
     .catch(function (e) {

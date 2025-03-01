@@ -1,7 +1,7 @@
 const axios = require('axios');
 const fs = require('fs').promises; // Use promises for better async handling
 const path = require('path');
-const { logo } = require('./hady-zen/log');
+const { logo } = require('./facebook/log');
 
 /**
  * Check if a file exists on the GitHub repository.
@@ -10,7 +10,7 @@ const { logo } = require('./hady-zen/log');
  */
 async function kei(filename) {
   try {
-    const response = await axios.get(`https://raw.githubusercontent.com/RahezGemimi/Azura-Akari/refs/heads/main/${filename}`);
+    const response = await axios.get(`https://raw.githubusercontent.com/RahezGemimi/Facebook-bot/refs/heads/main/${filename}`);
     return response.status === 200;
   } catch (error) {
     if (error.response && error.response.status === 404) {
@@ -31,7 +31,7 @@ async function ayanokoji(filename) {
   if (!fileExists) return;
 
   try {
-    const { data } = await axios.get(`https://raw.githubusercontent.com/RahezGemimi/Azura-Akari/refs/heads/main/${filename}`, { responseType: 'arraybuffer' });
+    const { data } = await axios.get(`https://raw.githubusercontent.com/RahezGemimi/Facebook-bot/refs/heads/main/${filename}`, { responseType: 'arraybuffer' });
     await fs.writeFile(path.join(__dirname, filename), data);
     console.log(logo.update + `Berhasil memperbarui file ${filename}.`);
   } catch (error) {
@@ -44,17 +44,32 @@ async function ayanokoji(filename) {
  */
 async function kiyotaka() {
   try {
-    // Read local package.json
-    const packageData = JSON.parse(await fs.readFile(path.join(__dirname, 'package.json'), 'utf8'));
-    const { version } = packageData;
-
-    // Fetch remote package.json
-    const { data: remotePackageData } = await axios.get('https://raw.githubusercontent.com/RahezGemimi/Azura-Akari/refs/heads/main/package.json');
+    // Read local version.json
+    const versionFilePath = path.join(__dirname, 'version.json');
+    const versionData = JSON.parse(await fs.readFile(versionFilePath, 'utf8'));
+    const { version } = versionData;
 
     if (!version) {
-      console.log(logo.error + 'Versi tidak ditemukan, pembaruan dibatalkan.');
+      console.log(logo.error + 'Versi tidak ditemukan di version.json, pembaruan dibatalkan.');
       return;
     }
+
+    // Fetch remote version.json
+    const { data: remoteVersionData } = await axios.get('https://raw.githubusercontent.com/RahezGemimi/Facebook-bot/refs/heads/main/version.json');
+
+    if (!remoteVersionData.version) {
+      console.log(logo.error + 'Versi tidak ditemukan di repositori GitHub, pembaruan dibatalkan.');
+      return;
+    }
+
+    // Validate version
+    if (version !== remoteVersionData.version) {
+      console.log(logo.error + 'Versi tidak valid. Mohon gunakan versi yang sesuai dari repositori GitHub.');
+      return;
+    }
+
+    // Check if an update is available
+    const { data: remotePackageData } = await axios.get('https://raw.githubusercontent.com/RahezGemimi/Facebook-bot/refs/heads/main/package.json');
     if (version === remotePackageData.version) {
       console.log(logo.update + 'Kamu sudah menggunakan versi terbaru.');
       return;
@@ -65,7 +80,7 @@ async function kiyotaka() {
 
     // Filter and update files concurrently
     const updatePromises = files
-      .filter((file) => file !== 'kiyotaka.json' && file !== 'account.txt')
+      .filter((file) => file !== 'version.json' && file !== 'account.txt' && file !== 'config.json')
       .map(async (file) => {
         try {
           const stats = await fs.stat(path.join(__dirname, file));

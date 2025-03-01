@@ -1,0 +1,11 @@
+{
+  "version": "1.9.13",
+  "description": "INFO UPDATE & NEA VERSION UPDATE",
+  "repository": "https://github.com/RahezGemimi/Facebook-bot",
+  "license": "MIT"
+  "update" {
+      "Akari.js": "fix error",
+      "Akari.js": "update",
+      "update.js": "fix error"
+  }
+}

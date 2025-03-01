@@ -4,26 +4,27 @@
   "port": 8080,
   "proxy": "103.179.217.242",
   "bahasa": "id",
+  "admin": ["100090298542452"],
   "database": "json",
   "notifkey": "begiiojfmfgdvqnn",
   "aikey": "aizasyaxbvwnkzbckc8b3vtzvvuwrwlsptttgka",
   "chatdm": true,
   "maintain": false,
+  "ai": "true",
   "zonawaktu": "asia/jakarta",
-  "admin": ["100090298542452"],
-  "config": {
-  "url": "",
-  "note_url": "masukan url project kalian jika menggunakan glitch atau replit tidak perlu",
-  "urlfire": "",
-  "note_urlfire": "url firebase masih tahap pengembangan",
-  "uptimekey": "",
-  "note_uptimekey": "isi dengan apikey uptimeRobot.com"
-  },
   "setting": {
     "forcelogin": true,
     "listenevents": true,
     "updatepresence": true,
     "listentyping": true,
     "loglevel": "error"
+  },
+  "config": {
+    "url": "",
+    "note_url": "masukan url project kalian jika menggunakan glitch atau replit tidak perlu",
+    "urlfire": "",
+    "note_urlfire": "url firebase masih tahap pengembangan",
+    "uptimekey": "",
+  "note_uptimekey": "isi dengan apikey uptimeRobot.com"
   }
 }

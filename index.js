@@ -2,7 +2,7 @@
 
 const { spawn } = require('child_process');
 
-function hady() {
+function start() {
   const child = spawn("node Akari.js", {
     cwd: __dirname,
     stdio: "inherit",
@@ -11,8 +11,8 @@ function hady() {
 
   child.on("close", (code) => {
     if (code == 2) {
-      hady(); 
+      start(); 
   }
  });
 };
-hady();
+start();

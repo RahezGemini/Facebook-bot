@@ -2,7 +2,7 @@
   "name": "Faceboo-bot",
   "author": "Rahez",
   "description": "Chatbot messenger by hady zen (Remake By Rahez)",
-  "version": "1.2.11",
+  "version": "1.2.13",
   "main": "index.js",
   "lockfileVersion": 3,
   "requires": true,

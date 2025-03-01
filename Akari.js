@@ -1,16 +1,16 @@
 const express = require('express');
 const app = express();
-const login = require('./hady-zen/ayanokoji');
-const { logo, warna, font, ayanokoji } = require('./hady-zen/log');
+const login = require('./facebook/fb-chat-api');
+const { logo, warna, font, ayanokoji } = require('./facebook/log');
 const fs = require('fs');
 const path = require('path');
-const axios = require('axios');
 const cron = require('node-cron');
+const axios = require('axios');
 const { spawn } = require('child_process');
 const { version } = require('./package');
 const gradient = require('gradient-string');
-const { awalan, nama, admin, proxy, port, bahasa: nakano, maintain, chatdm, notifkey, aikey, setting, zonawaktu, database, config } = require('./kiyotaka');
-const { kuldown } = require('./hady-zen/kuldown');
+const { ai, awalan, nama, admin, proxy, port, bahasa: nakano, maintain, chatdm, notifkey, aikey, setting, zonawaktu, database, config } = require('./config');
+const { kuldown } = require('./facebook/kuldown');
 const moment = require('moment-timezone');
 const now = moment.tz(zonawaktu);
 // const uptime = require('./bot/uptime');
@@ -43,12 +43,20 @@ async function getStream(url, filename) {
   try {
     const response = await axios.get(url, { responseType: 'arraybuffer' });
     const buffer = Buffer.from(response.data, 'binary');
-    const filePath = path.join(__dirname, 'hady-zen', filename);
+    const filePath = path.join(__dirname, 'facebook', filename);
     fs.writeFileSync(filePath, buffer);
     return filePath;
   } catch (error) {
     throw error;
   }
+}
+
+async function Message(pesan) {
+      try {
+        await api.sendMessage(pesan, event.threadID, event.messageID);
+      } catch (error) {
+     console.log(logo.error + 'Gagal membalas pesan: ', error);
+   }
 }
 
 let data = {};
@@ -77,7 +85,7 @@ if (fs.existsSync(threadDbPath)) {
   fs.writeFileSync(threadDbPath, JSON.stringify({}, null, 2));
 }
 
-async function addData(id, api) {
+async function addData(id) {
   if (!data[id]) {
     try {
       const userInfo = await api.getUserInfo(id);
@@ -175,7 +183,7 @@ function simpanThread() {
 
 function loadC() {
   try {
-    const data = fs.readFileSync('kiyotaka.json', 'utf8');
+    const data = fs.readFileSync('config.json', 'utf8');
     return JSON.parse(data);
   } catch (error) {
     console.log(logo.error + 'Gagal membaca kiyotaka.json: ', error);
@@ -196,6 +204,19 @@ cron.schedule('0 */4 * * *', () => {
     else console.log(logo.error + nama + ' gagal dimulai ulang: ', code);
   });
 });
+
+// Ekspos fungsi ke global scope
+global.notiferr = notiferr;
+global.getStream = getStream;
+global.Message = Message;
+global.addData = addData;
+global.setUser = setUser;
+global.getData = getData;
+global.saveThreadData = saveThreadData;
+global.ThreadData = ThreadData;
+global.setThread = setThread;
+global.getAllUser = getAllUser;
+global.getAllThread = getAllThread;
 
 console.log(ayanokoji('versi') + `${version}.`);
 console.log(ayanokoji('prefix') + `${awalan}`);
@@ -237,7 +258,7 @@ login({ appState: JSON.parse(akun, zen) }, setting, (err, api) => {
     if (data[userID].exp >= 1000) {
       data[userID].level += 1;
       data[userID].exp = 0;
-      data[userID].dollar += 200
+      data[userID].dollar += 200;
       console.log(ayanokoji('database') + `${data[userID].nama} telah naik ke level ${data[userID].level}.`);
       api.sendMessage(`Selamat ${data[userID].nama} telah naik ke level ${data[userID].level} dan mendapatkan 200$`, event.threadID); // Kirim pesan ke pengguna
     }
@@ -292,6 +313,11 @@ if (userData && userData.ban !== "true") {
     if (body.toLowerCase() === "prefix") {
     return api.sendMessage(`Awalan ${nama} adalah ${awalan}`, event.threadID, event.messageID);
   }
+    if (ai === "true") {
+        if (body.toLowerCase() === "ai") {
+        api.sendMessage('test', event.threadID)
+        }
+    }
   return; 
 }
       if (body.startsWith(awalan)) {
@@ -328,20 +354,20 @@ if (userData && userData.ban !== "true") {
 
           if (kuldown(event.senderID, hady.nama, hady.kuldown) == 'hadi') {
             if (hady.peran == 0 || !hady.peran) {
-              await Ayanokoji({ api, event, args, bhs, getStream, loadC, setUser, getData, ThreadData, setThread, getAllUser, getAllThread });
+              await Ayanokoji({ api, event, args, bhs, getStream, loadC, setUser, getData, ThreadData, setThread, getAllUser, getAllThread, Message });
               return;
             }
             if ((hady.peran == 2 || hady.peran == 1) && admin.includes(event.senderID) || hady.peran == 0) {
-              await Ayanokoji({ api, event, args, bhs, getStream, loadC, setUser, getData, ThreadData, setThread, getAllUser, getAllThread });
+              await Ayanokoji({ api, event, args, bhs, getStream, loadC, setUser, getData, ThreadData, setThread, getAllUser, getAllThread, Message });
               return;
             } else if (hady.peran == 1 && adminIDs.includes(event.senderID) || hady.peran == 0) {
-              await Ayanokoji({ api, event, args, bhs, getStream, loadC, setUser, getData, ThreadData, setThread, getAllUser, getAllThread });
+              await Ayanokoji({ api, event, args, bhs, getStream, loadC, setUser, getData, ThreadData, setThread, getAllUser, getAllThread, Message });
               return;
             } else {
               api.setMessageReaction("❗", event.messageID);
             }
           } else {
-            api.sendMessage('Sedang Couldown mohon tunggu...', event.threadID);
+            Message('Sedang Couldown mohon tunggu...');
           }
         }
       }
@@ -373,15 +399,15 @@ app.get('/uptime', (req, res) => {
 });
 
 app.get('laporan', (req, res) => {
-  res.sendFile(path.join(__dirname, 'hady-zen', 'html', 'feedback.html'));
+  res.sendFile(path.join(__dirname, 'facebook', 'html', 'feedback.html'));
 });
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'hady-zen', 'html', 'home.html')); 
+  res.sendFile(path.join(__dirname, 'facebook', 'html', 'home.html')); 
 })
 
 app.get('/social', (req, res) => {
-  res.sendFile(path.join(__dirname, 'hady-zen', 'html', 'social.html'));
+  res.sendFile(path.join(__dirname, 'facebook', 'html', 'social.html'));
 });
 
 app.get('/gemini', async (req, res) => {
@@ -400,5 +426,5 @@ app.get('/gemini', async (req, res) => {
 });
 
 app.use((req, res) => {
-  res.status(404).sendFile(path.join(__dirname, 'hady-zen', 'html', '404.html'));
+  res.status(404).sendFile(path.join(__dirname, 'facebook', 'html', '404.html'));
 });

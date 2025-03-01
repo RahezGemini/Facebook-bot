@@ -1,5 +1,14 @@
 <h1 align="center">INFO UPDATE</h1>
 
+## 📦 Version 1.2.13
+### ⬆️ INFO UPDATE V1.2.13
+- **Akari.js** New Update
+- **Akari.js** fix error
+- **update.js** fix error
+- **copyright.md** New file
+- **hady-zen & Ayanokoji** Change name file
+
+
 ## 📦 Version 1.2.12
 ### ⬆️ INFO UPDATE V1.2.12
 - **bot/uptime.js** Fix error
