@@ -2,8 +2,8 @@
   "100090298542452": {
     "nama": "Takashi Kenta",
     "userID": "100090298542452",
-    "dollar": 256,
-    "exp": 310,
+    "dollar": 261.5,
+    "exp": 420,
     "ban": "false",
     "level": 2,
     "daily": null
@@ -29,8 +29,8 @@
   "61556458680204": {
     "nama": "Facebook User",
     "userID": "61556458680204",
-    "dollar": 2,
-    "exp": 40,
+    "dollar": 4.5,
+    "exp": 90,
     "ban": "false",
     "level": 1,
     "daily": null
@@ -47,8 +47,8 @@
   "61572900803123": {
     "nama": "Facebook User",
     "userID": "61572900803123",
-    "dollar": 0,
-    "exp": 0,
+    "dollar": 1.5,
+    "exp": 30,
     "ban": "false",
     "level": 1,
     "daily": null
@@ -65,8 +65,44 @@
   "100031366812533": {
     "nama": "Facebook User",
     "userID": "100031366812533",
-    "dollar": 0.5,
-    "exp": 10,
+    "dollar": 6,
+    "exp": 120,
+    "ban": "false",
+    "level": 1,
+    "daily": null
+  },
+  "100090979669683": {
+    "nama": "Facebook User",
+    "userID": "100090979669683",
+    "dollar": 1,
+    "exp": 20,
+    "ban": "false",
+    "level": 1,
+    "daily": null
+  },
+  "100080271486830": {
+    "nama": "Adi Ganz",
+    "userID": "100080271486830",
+    "dollar": 1,
+    "exp": 20,
+    "ban": "false",
+    "level": 1,
+    "daily": null
+  },
+  "61574049657639": {
+    "nama": "Tania Chan",
+    "userID": "61574049657639",
+    "dollar": 3.5,
+    "exp": 70,
+    "ban": "false",
+    "level": 1,
+    "daily": null
+  },
+  "61556816065631": {
+    "nama": "Nando Haotbo Toro",
+    "userID": "61556816065631",
+    "dollar": 2,
+    "exp": 40,
     "ban": "false",
     "level": 1,
     "daily": null

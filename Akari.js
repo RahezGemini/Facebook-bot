@@ -86,7 +86,7 @@ if (fs.existsSync(threadDbPath)) {
   fs.writeFileSync(threadDbPath, JSON.stringify({}, null, 2));
 }
 
-async function addData(id) {
+async function addData(id, api) {
   if (!data[id]) {
     try {
       const userInfo = await api.getUserInfo(id);

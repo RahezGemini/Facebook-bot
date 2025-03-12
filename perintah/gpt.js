@@ -8,19 +8,36 @@ module.exports = {
     penulis: "Rahez", 
     tutor: "<answer>"
   },
-  
-  
-  Ayanokoji: async function ({ api, event, args }) {
-    if (!args.join(' ')) return api.sendMessage('Masukan prompt nya', event.threadID, event.messageID);
 
-    
-    try {
-      const respon = await axios.get(`https://api.ryzendesu.vip/api/ai/v2/chatgpt?text=${encodeURIComponent(args.join(' '))}`)
+  Ayanokoji: async function ({ api, event, args }) {
+    const { threadID, messageID, messageReply } = event;
+
+    // Cek apakah pesan adalah reply ke pesan bot
+    if (messageReply && messageReply.senderID === api.getCurrentUserID()) {
+      const prompt = messageReply.body; // Ambil isi pesan yang di-reply
+      if (!prompt) return api.sendMessage('Masukan prompt nya', threadID, messageID);
+
+      try {
+        const respon = await axios.get(`https://api.ryzendesu.vip/api/ai/v2/chatgpt?text=${encodeURIComponent(prompt)}`);
         const response = respon.data.response;
-        api.sendMessage(response, event.threadID, event.messageID);
-    } catch (error) {
-      console.error("Error contacting AI:", error);
-      api.sendMessage("Gagal Mengirim Request.", event.threadID, event.messageID);
+        api.sendMessage(response, threadID, messageID);
+      } catch (error) {
+        console.error("Error contacting AI:", error);
+        api.sendMessage("Gagal Mengirim Request.", threadID, messageID);
+      }
+    } else {
+      // Jika bukan reply ke pesan bot, tangani seperti biasa
+      const prompt = args.join(' ');
+      if (!prompt) return api.sendMessage('Masukan prompt nya', threadID, messageID);
+
+      try {
+        const respon = await axios.get(`https://api.ryzendesu.vip/api/ai/v2/chatgpt?text=${encodeURIComponent(prompt)}`);
+        const response = respon.data.response;
+        api.sendMessage(response, threadID, messageID);
+      } catch (error) {
+        console.error("Error contacting AI:", error);
+        api.sendMessage("Gagal Mengirim Request.", threadID, messageID);
+      }
     }
   }
 };
