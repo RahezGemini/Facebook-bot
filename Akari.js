@@ -14,6 +14,7 @@ const moment = require('moment-timezone');
 const now = moment.tz(zonawaktu);
 // const lang = require('./lang/lang.js');
 const uptime = require('./bot/uptime');
+uptime.startUptimeMonitor();
 global.db = {
     userdata: {},
     threaddata: {},
@@ -337,8 +338,7 @@ if (userData && userData.ban !== "true") {
 
     addData(event.senderID, api);
     saveThreadData(event.threadID, threadInfo);
-    uptime.startUptimeMonitor(api);
-
+    
     const adminIDs = threadInfo.adminIDs.map(admin => admin.id);
     const files = fs.readdirSync(path.join(__dirname, '/perintah'));
     let commandFound = false;

@@ -14,7 +14,7 @@ try {
 
 const uptimeEndpoint = "https://potential-halibut-wr599jw7qv5jhgppw-8080.app.github.dev/uptime";
 
-const checkInterval = 6000; 
+const checkInterval = 60000; 
 
 async function checkUptime() {
   try {
@@ -33,7 +33,7 @@ async function checkUptime() {
   }
 }
 
-function startUptimeMonitor(api) {
+function startUptimeMonitor() {
   setInterval(async () => {
     const uptimeStatus = await checkUptime();
     console.log("Uptime Status:\n", uptimeStatus);

@@ -65,8 +65,8 @@
   "100031366812533": {
     "nama": "Facebook User",
     "userID": "100031366812533",
-    "dollar": 0,
-    "exp": 0,
+    "dollar": 0.5,
+    "exp": 10,
     "ban": "false",
     "level": 1,
     "daily": null
