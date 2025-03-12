@@ -1,61 +1,45 @@
 const axios = require('axios');
-const { config, port } = require('./config');
-const { uptimekey, url, notifkey } = config;
-const { Ayanokoji, logo } = require('./facebook/log');
+const fs = require('fs');
+const path = require('path');
 
-const PORT = port || (!isNaN(port) && port) || 3001;
+const configPath = path.resolve('./config.json');
 
-let myUrl = url || `https://${process.env.REPL_OWNER
-    ? `${process.env.REPL_SLUG}.${process.env.REPL_OWNER}.repl.co`
-    : process.env.API_SERVER_EXTERNAL == "https://api.glitch.com"
-        ? `${process.env.PROJECT_DOMAIN}.glitch.me`
-        : `localhost:${PORT}`}`;
-myUrl.includes('localhost') && (myUrl = myUrl.replace('https', 'http'));
-myUrl += '/uptime';
-
-let status = 'ok';
-
-// Fungsi untuk mengirim status ke UptimeRobot
-async function sendToUptimeRobot(status) {
-    const uptimeRobotUrl = `https://api.uptimerobot.com/v2/getMonitors?api_key=${uptimekey}`;
-    try {
-        await axios.post(uptimeRobotUrl, {
-            status: status
-        });
-    } catch (error) {
-        console.log(logo.error + 'Gagal mengirim status ke UptimeRobot: ', error);
-    }
+let config = {};
+try {
+  config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+} catch (error) {
+  console.error("Gagal membaca config.json:", error);
+  process.exit(1);
 }
 
-setTimeout(async function autoUptime() {
-    try {
-        await axios.get(myUrl);
-        if (status != 'ok') {
-            status = 'ok';
-            console.log(Ayanokoji("UPTIME") + "Bot Online");
-            const mes = `UPTIME BOT AKTIF\nProject: ${nama}`;
-            const res = await axios.get(`https://api.callmebot.com/facebook/send.php?apikey=${notifkey}&text=${encodeURIComponent(mes)}`);
-            sendToUptimeRobot('up');
-        }
-    } catch (e) {
-        const err = e.response?.data || e;
-        if (status != 'ok')
-            return;
-        status = 'failed';
+const uptimeEndpoint = "https://potential-halibut-wr599jw7qv5jhgppw-8080.app.github.dev/uptime";
 
-        if (err.statusAccountBot == "can't login") {
-            console.log(Ayanokoji("UPTIME") + "Gagal Login");
-            const mes2 = `GAGAL LOGIN PADA UPTIME\nProject: ${nama}`;
-            const res2 = await axios.get(`https://api.callmebot.com/facebook/send.php?apikey=${notifkey}&text=${encodeURIComponent(mes2)}`);
-            sendToUptimeRobot('down'); // Kirim status 'down' ke UptimeRobot
-        } else if (err.statusAccountBot == "block spam") {
-            console.log(Ayanokoji("UPTIME") + "Akun telah di block");
-            const mes3 = `AKUN TERKUNCI\nProject: ${nama}`;
-            const res3 = await axios.get(`https://api.callmebot.com/facebook/send.php?apikey=${notifkey}&text=${encodeURIComponent(mes3)}`);
-            sendToUptimeRobot('down'); // Kirim status 'down' ke UptimeRobot
-        }
+const checkInterval = 6000; 
+
+async function checkUptime() {
+  try {
+    const startTime = Date.now();
+    const response = await axios.get(uptimeEndpoint);
+    const responseTime = Date.now() - startTime;
+
+
+    if (response.data && typeof response.data === 'object') {
+      return console.log(`✅ Uptime Status: ${JSON.stringify(response.data)}\nResponse time: ${responseTime}ms`);
+    } else {
+      return console.log(`✅ Uptime Status: ${response.data}\nResponse time: ${responseTime}ms`);
     }
-    global.timeOutUptime = setInterval(autoUptime, 180 * 1000);
-}, ( 180) * 1000);
- autoUptime()
-console.log(Ayanokoji("UPTIME") + "uptime aktif pada url" + myUrl);
+  } catch (error) {
+    return console.log(`❌ Uptime Status: DOWN\nError: ${error.message}`);
+  }
+}
+
+function startUptimeMonitor(api) {
+  setInterval(async () => {
+    const uptimeStatus = await checkUptime();
+    console.log("Uptime Status:\n", uptimeStatus);
+  }, checkInterval);
+}
+
+module.exports = {
+  startUptimeMonitor,
+};

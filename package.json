@@ -12,9 +12,11 @@
   "dependencies": {
     "axios": "^1.7.9",
     "bcryptjs": "^3.0.2",
+    "body-parser": "^1.20.3",
     "canvas": "^2.11.2",
     "cb": "^0.1.1",
     "child_process": "^1.0.2",
+    "cors": "^2.8.5",
     "express": "^4.21.0",
     "fontstyles": "^1.1.2",
     "fs": "^0.0.1-security",

@@ -2,10 +2,10 @@
   "100090298542452": {
     "nama": "Takashi Kenta",
     "userID": "100090298542452",
-    "dollar": 33,
-    "exp": 660,
+    "dollar": 256,
+    "exp": 310,
     "ban": "false",
-    "level": 1,
+    "level": 2,
     "daily": null
   },
   "61565834699473": {
@@ -13,6 +13,60 @@
     "userID": "61565834699473",
     "dollar": 3,
     "exp": 60,
+    "ban": "false",
+    "level": 1,
+    "daily": null
+  },
+  "100077913084339": {
+    "nama": "Facebook User",
+    "userID": "100077913084339",
+    "dollar": 1.5,
+    "exp": 30,
+    "ban": "false",
+    "level": 1,
+    "daily": null
+  },
+  "61556458680204": {
+    "nama": "Facebook User",
+    "userID": "61556458680204",
+    "dollar": 2,
+    "exp": 40,
+    "ban": "false",
+    "level": 1,
+    "daily": null
+  },
+  "100025450819858": {
+    "nama": "Facebook User",
+    "userID": "100025450819858",
+    "dollar": 1.5,
+    "exp": 30,
+    "ban": "false",
+    "level": 1,
+    "daily": null
+  },
+  "61572900803123": {
+    "nama": "Facebook User",
+    "userID": "61572900803123",
+    "dollar": 0,
+    "exp": 0,
+    "ban": "false",
+    "level": 1,
+    "daily": null
+  },
+  "100084917431524": {
+    "nama": "Facebook User",
+    "userID": "100084917431524",
+    "dollar": 0,
+    "exp": 0,
+    "ban": "false",
+    "level": 1,
+    "daily": null
+  },
+  "100031366812533": {
+    "nama": "Facebook User",
+    "userID": "100031366812533",
+    "dollar": 0,
+    "exp": 0,
     "ban": "false",
     "level": 1,
     "daily": null

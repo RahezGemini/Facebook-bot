@@ -2,7 +2,7 @@
   "nama": "azura akari",
   "awalan": "-",
   "port": 443,
-  "proxy": "114.10.148.174",
+  "proxy": "154.26.133.29",
   "bahasa": "id",
   "admin": ["100090298542452"],
   "database": "json",
@@ -20,11 +20,11 @@
     "loglevel": "error"
   },
   "config": {
-    "url": "",
+    "url": "https://potential-halibut-wr599jw7qv5jhgppw-8080.app.github.dev/uptime",
     "note_url": "masukan url project kalian jika menggunakan glitch atau replit tidak perlu",
     "urlfire": "",
     "note_urlfire": "url firebase masih tahap pengembangan",
-    "uptimekey": "",
+    "uptimekey": "m798748595-8caf3160e91de880a282a821",
   "note_uptimekey": "isi dengan apikey uptimeRobot.com"
   }
 }
