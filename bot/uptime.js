@@ -1,9 +1,7 @@
 const axios = require('axios');
-const port = "3001";
-const url = "";
-const notifkey = "";
-const nama = "My Project";
-const uptimekey = "m798632251-b8de7c34fb3dc8552e70872c"
+const { config, port } = require('./config');
+const { uptimekey, url, notifkey } = config;
+const { Ayanokoji, logo } = require('./facebook/log');
 
 const PORT = port || (!isNaN(port) && port) || 3001;
 
@@ -25,7 +23,7 @@ async function sendToUptimeRobot(status) {
             status: status
         });
     } catch (error) {
-        console.log('Gagal mengirim status ke UptimeRobot: ', error);
+        console.log(logo.error + 'Gagal mengirim status ke UptimeRobot: ', error);
     }
 }
 
@@ -34,10 +32,10 @@ setTimeout(async function autoUptime() {
         await axios.get(myUrl);
         if (status != 'ok') {
             status = 'ok';
-            console.log("UPTIME" + "Bot Online");
+            console.log(Ayanokoji("UPTIME") + "Bot Online");
             const mes = `UPTIME BOT AKTIF\nProject: ${nama}`;
             const res = await axios.get(`https://api.callmebot.com/facebook/send.php?apikey=${notifkey}&text=${encodeURIComponent(mes)}`);
-            sendToUptimeRobot('up'); // Kirim status 'up' ke UptimeRobot
+            sendToUptimeRobot('up');
         }
     } catch (e) {
         const err = e.response?.data || e;
@@ -46,12 +44,12 @@ setTimeout(async function autoUptime() {
         status = 'failed';
 
         if (err.statusAccountBot == "can't login") {
-            console.log("UPTIME" + "Can't login account bot");
+            console.log(Ayanokoji("UPTIME") + "Gagal Login");
             const mes2 = `GAGAL LOGIN PADA UPTIME\nProject: ${nama}`;
             const res2 = await axios.get(`https://api.callmebot.com/facebook/send.php?apikey=${notifkey}&text=${encodeURIComponent(mes2)}`);
             sendToUptimeRobot('down'); // Kirim status 'down' ke UptimeRobot
         } else if (err.statusAccountBot == "block spam") {
-            console.log("UPTIME" + "Your account is blocked");
+            console.log(Ayanokoji("UPTIME") + "Akun telah di block");
             const mes3 = `AKUN TERKUNCI\nProject: ${nama}`;
             const res3 = await axios.get(`https://api.callmebot.com/facebook/send.php?apikey=${notifkey}&text=${encodeURIComponent(mes3)}`);
             sendToUptimeRobot('down'); // Kirim status 'down' ke UptimeRobot
@@ -59,5 +57,5 @@ setTimeout(async function autoUptime() {
     }
     global.timeOutUptime = setInterval(autoUptime, 180 * 1000);
 }, ( 180) * 1000);
-
-console.log("AUTO UPTIME" + "autoUptime", "autoUptimeTurnedOn" + myUrl);
+ autoUptime()
+console.log(Ayanokoji("UPTIME") + "uptime aktif pada url" + myUrl);

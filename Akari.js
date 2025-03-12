@@ -13,6 +13,7 @@ const { ai, awalan, nama, admin, proxy, port, bahasa: nakano, maintain, chatdm, 
 const { kuldown } = require('./facebook/kuldown');
 const moment = require('moment-timezone');
 const now = moment.tz(zonawaktu);
+// const lang = require('lang/lang.js');
 // const uptime = require('./bot/uptime');
 global.db = {
     userdata: {},
@@ -408,6 +409,10 @@ app.get('/', (req, res) => {
 
 app.get('/social', (req, res) => {
   res.sendFile(path.join(__dirname, 'facebook', 'html', 'social.html'));
+});
+
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, 'facebook', 'html', 'login.html'));
 });
 
 app.get('/gemini', async (req, res) => {

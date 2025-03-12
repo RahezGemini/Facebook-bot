@@ -1,0 +1,15 @@
+{
+    "login": "Login",
+    "update": "Update Data",
+    "save": "Save Data",
+    "greeting": "Hello, Welcome!",
+    "farewell": "Goodbye!",
+    "thankYou": "Thank You!",
+    "error_language_not_found": "Language '${lang}' not found. Bot will stop.",
+    "command_not_found": "Command '${cmd}' not found.",
+    "cooldown_message": "Please wait, cooldown in progress...",
+    "ban_message": "You are banned and cannot use commands.",
+    "prefix_message": "The prefix for ${nama} is ${awalan}.",
+    "menu_message": "Hello! Use ${awalan}menu to see the list of commands.",
+    "level_up_message": "Congratulations ${nama}, you have leveled up to level ${level} and received 200$."
+}
