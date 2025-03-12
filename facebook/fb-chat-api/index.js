@@ -77,7 +77,7 @@ function setOptions(globalOptions, options) {
   });
 }
 
-const configPath = process.cwd() + 'kiyotaka.json';  
+const configPath = process.cwd() + '/kiyotaka.json';  
 let bypassEnabled = false;
 
 if (!fs.existsSync(configPath)) {

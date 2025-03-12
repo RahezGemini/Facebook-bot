@@ -1,8 +1,8 @@
 {
   "nama": "azura akari",
   "awalan": "-",
-  "port": 8080,
-  "proxy": "103.179.217.242",
+  "port": 443,
+  "proxy": "114.10.148.174",
   "bahasa": "id",
   "admin": ["100090298542452"],
   "database": "json",
