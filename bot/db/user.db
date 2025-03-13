@@ -2,8 +2,8 @@
   "100090298542452": {
     "nama": "Takashi Kenta",
     "userID": "100090298542452",
-    "dollar": 261.5,
-    "exp": 420,
+    "dollar": 264,
+    "exp": 470,
     "ban": "false",
     "level": 2,
     "daily": null
@@ -29,8 +29,8 @@
   "61556458680204": {
     "nama": "Facebook User",
     "userID": "61556458680204",
-    "dollar": 4.5,
-    "exp": 90,
+    "dollar": 8,
+    "exp": 160,
     "ban": "false",
     "level": 1,
     "daily": null
@@ -38,8 +38,8 @@
   "100025450819858": {
     "nama": "Facebook User",
     "userID": "100025450819858",
-    "dollar": 1.5,
-    "exp": 30,
+    "dollar": 5,
+    "exp": 100,
     "ban": "false",
     "level": 1,
     "daily": null
@@ -47,8 +47,8 @@
   "61572900803123": {
     "nama": "Facebook User",
     "userID": "61572900803123",
-    "dollar": 1.5,
-    "exp": 30,
+    "dollar": 4.5,
+    "exp": 90,
     "ban": "false",
     "level": 1,
     "daily": null
@@ -65,8 +65,8 @@
   "100031366812533": {
     "nama": "Facebook User",
     "userID": "100031366812533",
-    "dollar": 6,
-    "exp": 120,
+    "dollar": 7,
+    "exp": 140,
     "ban": "false",
     "level": 1,
     "daily": null
@@ -74,8 +74,8 @@
   "100090979669683": {
     "nama": "Facebook User",
     "userID": "100090979669683",
-    "dollar": 1,
-    "exp": 20,
+    "dollar": 2.5,
+    "exp": 50,
     "ban": "false",
     "level": 1,
     "daily": null
@@ -83,8 +83,8 @@
   "100080271486830": {
     "nama": "Adi Ganz",
     "userID": "100080271486830",
-    "dollar": 1,
-    "exp": 20,
+    "dollar": 1.5,
+    "exp": 30,
     "ban": "false",
     "level": 1,
     "daily": null
@@ -103,6 +103,60 @@
     "userID": "61556816065631",
     "dollar": 2,
     "exp": 40,
+    "ban": "false",
+    "level": 1,
+    "daily": null
+  },
+  "61571278409292": {
+    "nama": "ZAKY X ISOLDE SADBOY",
+    "userID": "61571278409292",
+    "dollar": 2,
+    "exp": 40,
+    "ban": "false",
+    "level": 1,
+    "daily": null
+  },
+  "61571832222608": {
+    "nama": "Dewi Tzy",
+    "userID": "61571832222608",
+    "dollar": 0.5,
+    "exp": 10,
+    "ban": "false",
+    "level": 1,
+    "daily": null
+  },
+  "100026925125273": {
+    "nama": "Ponirah",
+    "userID": "100026925125273",
+    "dollar": 0,
+    "exp": 0,
+    "ban": "false",
+    "level": 1,
+    "daily": null
+  },
+  "61561513044912": {
+    "nama": "Alwiagujir Alung",
+    "userID": "61561513044912",
+    "dollar": 2,
+    "exp": 40,
+    "ban": "false",
+    "level": 1,
+    "daily": null
+  },
+  "100088461222012": {
+    "nama": "Araa Grace",
+    "userID": "100088461222012",
+    "dollar": 2,
+    "exp": 40,
+    "ban": "false",
+    "level": 1,
+    "daily": null
+  },
+  "61566124348956": {
+    "nama": "Ara",
+    "userID": "61566124348956",
+    "dollar": 0,
+    "exp": 0,
     "ban": "false",
     "level": 1,
     "daily": null

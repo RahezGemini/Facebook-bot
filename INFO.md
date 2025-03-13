@@ -1,5 +1,13 @@
 <h1 align="center">INFO UPDATE</h1>
 
+
+## 📦 Version 1.2.14
+### ⬆️ INFO UPDATE V1.2.14
+- **Akari.js**: Fix Error
+- **bot/uptime.js**: New Update
+- **perintah/admin.js**: Fix bug
+- **lang/lang.js**: New language ID and EN
+
 ## 📦 Version 1.2.13
 ### ⬆️ INFO UPDATE V1.2.13
 - **Akari.js** New Update
@@ -19,7 +27,7 @@
 ### ⬆️ INFO UPDATE V1.2.11
 - **account.txt**: fix bug jadi hilang
 - **Akari.js**: update thread Dan user bagian username
-- **bot/uptime.js** New Uptime support uptimerobot.js
+- **bot/uptime.js** New Uptime support uptimerobot.EN
 - **Akari.js** New update global.Akari
 - **Akari.js** Fix error
 
@@ -36,5 +44,4 @@
 ## 📦 Version 1.2.9
 ### ⬆️ INFO UPDATE V1.2.9
 - **Akari.js**: fix error
-- 
 ## 

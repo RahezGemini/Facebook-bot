@@ -1,6 +1,7 @@
 const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
+const { logo, ayanokoji } = require('./facebook/log');
 
 const configPath = path.resolve('./config.json');
 
@@ -12,7 +13,7 @@ try {
   process.exit(1);
 }
 
-const uptimeEndpoint = "https://potential-halibut-wr599jw7qv5jhgppw-8080.app.github.dev/uptime";
+const uptimeEndpoint = "${config.config.url}/uptime";
 
 const checkInterval = 60000; 
 

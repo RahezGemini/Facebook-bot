@@ -5,8 +5,11 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const port = '8080';
 const app = express();
+const { aikey } = require('./config.json')
 
 app.use(cors());
+app.use(express.json());
+app.use(bodyParser.json());
 
 app.listen(port, () => {
     console.log(`Server berjalan di port ${port}`);
@@ -19,19 +22,15 @@ app.listen(port, () => {
   });
   
   app.get('/laporan', (req, res) => {
-    res.sendFile(path.join(__dirname, 'facebook', 'html', 'feedback.html'));
+    res.sendFile(path.join(__dirname, 'html', 'feedback.html'));
   });
   
   app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'facebook', 'html', 'home.html')); 
+    res.sendFile(path.join(__dirname, 'html', 'home.html')); 
   })
   
-  app.get('/social', (req, res) => {
-    res.sendFile(path.join(__dirname, 'facebook', 'html', 'social.html'));
-  });
-  
   app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, 'facebook', 'html', 'login.html'));
+    res.sendFile(path.join(__dirname, 'html', 'login.html'));
   });
   
   app.get('/gemini', async (req, res) => {
@@ -50,5 +49,5 @@ app.listen(port, () => {
   });
   
   app.use((req, res) => {
-    res.status(404).sendFile(path.join(__dirname, 'facebook', 'html', '404.html'));
+    res.status(404).sendFile(path.join(__dirname, 'html', '404.html'));
   });

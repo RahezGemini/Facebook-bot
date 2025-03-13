@@ -8,11 +8,11 @@ const axios = require('axios');
 const { spawn } = require('child_process');
 const { version } = require('./package');
 const gradient = require('gradient-string');
-const { ai, awalan, nama, admin, proxy, port, bahasa: nakano, maintain, chatdm, notifkey, aikey, setting, zonawaktu, database, config } = require('./config');
+const { ai, awalan, nama, admin, proxy, port, bahasa: nakano, maintain, chatdm, notifkey, aikey, setting, zonawaktu, config } = require('./config');
 const { kuldown } = require('./facebook/kuldown');
 const moment = require('moment-timezone');
 const now = moment.tz(zonawaktu);
-// const lang = require('./lang/lang.js');
+const { lang } = require('./lang/lang.js');
 const uptime = require('./bot/uptime');
 uptime.startUptimeMonitor();
 global.db = {
@@ -29,7 +29,7 @@ const tanggal = now.format('YYYY-MM-DD');
 const waktu = now.format('HH:mm:ss');
 const web = `https://${process.env.PROJECT_DOMAIN}.glitch.me`;
 global.Ayanokoji = { awalan: awalan, nama: nama, admin: admin, logo: logo, aikey: aikey, bahasa: nakano, web, maintain:  maintain, waktu: waktu, tanggal: tanggal };
-global.Akari = { url: config.url, port: port, notifkey: notifkey, awalan: awalan, nama: nama, admin: admin, logo: logo, aikey: aikey, bahasa: nakano, web: web, maintain: maintain, waktu: waktu, tanggal: tanggal, database: database, urlfire: config.urlfire, uptimekey: config.uptimekey }
+global.Akari = { url: config.url, port: port, notifkey: notifkey, awalan: awalan, nama: nama, admin: admin, logo: logo, aikey: aikey, bahasa: nakano, web: web, maintain: maintain, waktu: waktu, tanggal: tanggal }
 
 async function notiferr(notif) {
   try {
@@ -222,7 +222,6 @@ global.getAllThread = getAllThread;
 console.log(ayanokoji('versi') + `${version}.`);
 console.log(ayanokoji('prefix') + `${awalan}`);
 console.log(ayanokoji('bahasa') + `${nakano}.`);
-console.log(ayanokoji('database') + `Tersambung ke database ${database}`);
 console.log(ayanokoji('admin') + `${admin}.`);
 console.log(ayanokoji('webview') + `${web}.`);
 
